@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: academy
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false        # رابط Atlas — تدخله يدوي في لوحة Render
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASS
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ACADEMY_NAME
+        value: اسم الأكاديمية
+      - key: SEED_ON_START
+        value: "true"      # بيحط البيانات التجريبية لو الداتا بيز فاضية فقط — شيله بعد العرض
